@@ -1,0 +1,9 @@
+<h2>Connexion</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <input formControlName="username" type="text" placeholder="Nom d'utilisateur" required />
+  <input formControlName="password" type="password" placeholder="Mot de passe" required />
+  <button type="submit">Se connecter</button>
+
+  <p *ngIf="error" class="error">{{ error }}</p>
+</form>
