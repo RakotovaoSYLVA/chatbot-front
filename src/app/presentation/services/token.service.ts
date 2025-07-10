@@ -12,7 +12,9 @@ export class TokenService {
   }
 
   setToken(token: string): void {
+    console.log('setToken');
     if (this.isBrowser) {
+      console.log('attoooo22222');
       localStorage.setItem(this.tokenKey, token);
     }
   }

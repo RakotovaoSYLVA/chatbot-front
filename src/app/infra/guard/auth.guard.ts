@@ -8,9 +8,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const expectedRoles = route.data['roles'] as string[];
 
-
   const isLoggedIn = tokenService.isLoggedIn();
   const userRole = tokenService.getUserRole();
+
+  console.log('🔒 Guard - isLoggedIn:', isLoggedIn);
+  console.log('🔒 Guard - userRole:', userRole);
+  console.log('🔒 Guard - expectedRoles:', expectedRoles);
+
 
 
   if (!isLoggedIn || !userRole) {

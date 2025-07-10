@@ -18,6 +18,7 @@ export class AuthService {
       .request('POST', AuthEndpoint.login.url, credentials)
       .pipe(
         tap((res: any) => {
+          console.log('atoooooooo');
           // Enregistre le token reçu
           if (res && res.token) {
             this.tokenService.setToken(res.token);
@@ -34,20 +35,7 @@ export class AuthService {
   }
 
   redirectUserByRole(): void {
-    const role = this.tokenService.getUserRole();
-    console.log('Role user', role);
-    switch (role) {
-      case 'admin':
-        this.router.navigate(['/dashboard']);
-        break;
-      case 'user':
-        this.router.navigate(['/fournisseur']);
-        break;
-      case 'manager':
-        this.router.navigate(['/stock']);
-        break;
-      default:
-        this.router.navigate(['/login']);
-    }
+    this.router.navigate(['/dashboard']);
   }
+
 }

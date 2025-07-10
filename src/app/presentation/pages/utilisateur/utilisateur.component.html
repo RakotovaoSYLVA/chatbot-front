@@ -1,1 +1,73 @@
-<p>utilisateur works!</p>
+<div class="p-6 text-white">
+
+  <h1 class="text-3xl font-bold mb-6">Gestion des utilisateurs</h1>
+
+  <!-- 🔄 Loading -->
+  <div *ngIf="loading" class="flex items-center justify-center py-10">
+    <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-violet-200"></div>
+    <span class="ml-4 text-lg">Chargement...</span>
+  </div>
+
+  <!-- ✅ Affichage principal après chargement -->
+  <div *ngIf="!loading">
+
+    <!-- Barre d’action -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+      <!-- Recherche et Filtres -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <input
+          type="text"
+          placeholder="Rechercher un utilisateur..."
+          class="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-violet-400"
+        />
+        <select
+          class="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-violet-400"
+        >
+          <option>Tous les rôles</option>
+          <option>Admin</option>
+          <option>Utilisateur</option>
+        </select>
+      </div>
+
+      <!-- Boutons à droite -->
+      <div class="flex gap-3">
+        <button class="px-4 py-2 rounded-lg bg-violet-500 hover:bg-violet-600 transition text-white shadow-md">
+          ➕ Ajouter
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition text-white shadow-md">
+          ⬇️ Exporter
+        </button>
+      </div>
+    </div>
+
+    <!-- Tableau stylé -->
+    <div class="overflow-x-auto rounded-xl shadow-lg bg-white/10 backdrop-blur-md border border-white/20">
+      <table class="min-w-full text-sm text-left text-white/90">
+        <thead class="uppercase text-white/70 text-xs bg-white/5 border-b border-white/20">
+          <tr>
+            <th scope="col" class="px-6 py-4">Nom</th>
+            <th scope="col" class="px-6 py-4">Email</th>
+            <th scope="col" class="px-6 py-4">Rôle</th>
+            <th scope="col" class="px-6 py-4">Statut</th>
+            <th scope="col" class="px-6 py-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-white/80">
+          <tr class="hover:bg-white/5 transition" *ngFor="let user of utilisateurs">
+            <td class="px-6 py-4">{{ user.nom }}</td>
+            <td class="px-6 py-4">{{ user.email }}</td>
+            <td class="px-6 py-4">{{ user.role }}</td>
+            <td class="px-6 py-4"><span class="text-green-400">Actif</span></td>
+            <td class="px-6 py-4 space-x-2">
+              <button class="text-yellow-300 hover:underline">Modifier</button>
+              <button class="text-red-400 hover:underline">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
